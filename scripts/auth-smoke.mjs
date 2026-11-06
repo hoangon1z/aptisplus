@@ -1,0 +1,11 @@
+import {request} from '@playwright/test';import assert from 'node:assert/strict';
+const baseURL='https://localhost:3443';const client=await request.newContext({baseURL,ignoreHTTPSErrors:true,extraHTTPHeaders:{Origin:baseURL}});const email=`security-${Date.now()}@example.com`,password='Long-random-password-8493';
+assert.equal((await client.get('/api/auth/me')).status(),401);
+assert.equal((await client.post('/api/auth/register',{data:{email,password,name:'Auth Test'}})).status(),200);
+const cookies=(await client.storageState()).cookies;const cookie=cookies.find(c=>c.name==='__Host-aptis-session');assert(cookie?.httpOnly&&cookie.secure&&cookie.sameSite==='Lax');assert.equal((await client.get('/api/auth/me')).status(),200);
+assert.equal((await client.get('/admin',{maxRedirects:0})).status(),404);
+assert.equal((await client.post('/api/auth/profile',{data:{name:'Updated Test'}})).status(),200);
+const stolen=cookie.value;await client.post('/api/auth/logout');assert.equal((await client.get('/api/auth/me')).status(),401);
+const attacker=await request.newContext({baseURL,ignoreHTTPSErrors:true,extraHTTPHeaders:{Cookie:`__Host-aptis-session=${stolen}`}});assert.equal((await attacker.get('/api/auth/me')).status(),401);assert.equal((await attacker.post('/api/auth/login',{data:{email,password}})).status(),403);
+assert.equal((await client.post('/api/auth/login',{data:{email,password:'wrong-password-123'}})).status(),401);assert.equal((await client.post('/api/auth/login',{data:{email,password}})).status(),200);
+console.log('PASS: registration, login, wrong password, secure cookie, profile, admin denial, CSRF and revoked JWT');await client.dispose();await attacker.dispose();

@@ -1,0 +1,66 @@
+/* Exam appearance is independent of landing/workspace art direction. */
+.reference-exam {
+  display: flow-root;
+}
+.reference-exam,
+.reference-exam-dialog {
+  --exam: #23085a;
+  --brand: #23085a;
+  --brand-dark: #32106f;
+  --ink: #1b1b1b;
+  --line: #dedee4;
+  font-family: Inter, sans-serif;
+}
+.reference-exam .btn-primary,
+.reference-exam-dialog .btn-primary {
+  background: #23085a;
+  color: #fff;
+}
+.reference-exam .btn-primary:hover,
+.reference-exam-dialog .btn-primary:hover {
+  background: #32106f;
+}
+.reference-exam .audio-play-label {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.reference-exam .exam-icon {
+  flex-shrink: 0;
+  line-height: 1;
+  vertical-align: middle;
+}
+.reference-exam .exam-toolbar .exam-icon {
+  font-size: 21px;
+}
+.reference-exam .recording-circle > .exam-icon {
+  font-size: 53px;
+}
+.reference-exam .abc-options button,
+.reference-exam .exam-question-body select {
+  border-radius: 0;
+}
+.reference-exam-dialog .btn {
+  border-radius: 5px;
+}
+@media (max-width: 600px) {
+  .reference-exam .exam-timer {
+    right: 12px;
+    min-width: 105px;
+    padding-bottom: 8px;
+  }
+  .reference-exam .exam-timer > strong {
+    font-size: 21px;
+  }
+  .reference-exam .exam-timer > span {
+    font-size: 12px;
+  }
+  .reference-exam .exam-question {
+    margin-top: 95px;
+  }
+  .reference-exam .exam-toolbar .exam-icon {
+    font-size: 18px;
+  }
+  .reference-exam .recording-circle > .exam-icon {
+    font-size: 35px;
+  }
+}

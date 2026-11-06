@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="270" height="252" viewBox="0 0 270 252">
+<defs>
+ <linearGradient id="body" x1="0.1" y1="0.1" x2="0.95" y2="1" objectBoundingBox="true"><stop stop-color="#8277FF"/><stop offset="0.43" stop-color="#5C51F5"/><stop offset="1" stop-color="#3831D5"/></linearGradient>
+ <linearGradient id="ribbon" x1="0" y1="0" x2="1" y2="1" objectBoundingBox="true"><stop stop-color="#DAD4FF"/><stop offset="0.48" stop-color="#9D96F8"/><stop offset="1" stop-color="#F7F5FF"/></linearGradient>
+ <linearGradient id="ribbonD" x1="0" y1="0" x2="1" y2="1" objectBoundingBox="true"><stop stop-color="#FFFFFF"/><stop offset="0.58" stop-color="#C9C6FF"/><stop offset="1" stop-color="#FFFFFF"/></linearGradient>
+ <linearGradient id="appbg" x1="0.1" y1="0" x2="1" y2="1" objectBoundingBox="true"><stop stop-color="#6860FF"/><stop offset="0.55" stop-color="#514FE4"/><stop offset="1" stop-color="#3027BC"/></linearGradient>
+ </defs>
+<path d="M 22 195 L 89 46 Q 102 18 120 18 Q 138 18 153 46 L 232 194 Q 243 216 221 225 Q 200 230 190 212 L 138 117 Q 128 98 117 118 L 60 211 Q 49 227 32 220 Q 15 212 22 195 Z" fill="url(#body)"/>
+<path d="M 26 191 C 66 162 96 143 123 129 C 155 113 178 105 201 140 L 217 166 C 190 147 169 145 146 156 C 109 174 85 202 61 215 C 42 226 23 208 26 191 Z" fill="url(#ribbon)"/>
+<path d="M 208 38 C 208 32 213 27 219 27 C 225 27 230 32 230 38 L 230 47 L 239 47 C 245 47 250 52 250 58 C 250 64 245 69 239 69 L 230 69 L 230 78 C 230 84 225 89 219 89 C 213 89 208 84 208 78 L 208 69 L 199 69 C 193 69 188 64 188 58 C 188 52 193 47 199 47 L 208 47 Z" fill="#514FE4"/>
+</svg>

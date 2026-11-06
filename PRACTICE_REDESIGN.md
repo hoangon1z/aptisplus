@@ -1,0 +1,8 @@
+# Practice page
+
+Operate surface. Compact editorial header, four authored skill SVG selectors, conditional real-draft resume section and two-column test library. Primary #514FE4, navy #171936, existing Inter and sidebar preserved. Existing skills collection supplies all four available tests; each skill currently has one built-in test. Submitted state uses readAttempts; resumable state requires aptis-draft deadline in the future. Search, skill Tabs, status select and unsubmitted switch combine. Empty reset clears every filter. Scoped useGSAP respects reduced motion, reverts result transitions, and draws illustration paths once.
+
+Verification: production build passed; four workspace interaction tests passed. Browser screenshots inspected at1440 and390, also captured768; no horizontal overflow at all three. Evidence artifacts/practice-redesign. Protected exam routes and dashboard unchanged.
+
+## Precision layout correction
+The shell's1450px outer cap reduced actual content to1348px even after removing the page1320px cap. Practice now scopes the shell to1640px including fluid20–40px gutters, with1560px inner content. No other workspace route changes. Duplicate page breadcrumb removed. Skill SVG region52px and content grouping preserve count alignment. Toolbar groups Tabs left and controls right, wrapping deliberately below1150px available content; explicit34x20px switch track/16px thumb avoids inherited token ambiguity. Test grid uses four columns above1150px available content, two below, one below560px. Metadata/actions share a footer; content-driven cards measured193–229px at the six requested sizes. All six measurements show zero horizontal overflow. Evidence: artifacts/practice-spacing. Four workspace interaction tests passed5.2s.

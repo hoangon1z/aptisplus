@@ -1,0 +1,149 @@
+.trigger {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 10px !important;
+  border: 1px solid #e5e5f0 !important;
+  border-radius: 30px;
+  padding: 5px 10px 5px 5px !important;
+  background: white !important;
+  max-width: 240px;
+  transition:
+    background 0.2s,
+    border-color 0.2s;
+}
+.trigger:hover,
+.trigger[data-state="open"] {
+  background: #f4f3ff !important;
+  border-color: #ccc9fa !important;
+}
+.trigger:focus-visible {
+  outline: 2px solid #514fe4;
+  outline-offset: 3px;
+}
+.triggerName {
+  font-size: 13px;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #171936;
+}
+.chevron {
+  color: #74758b;
+  flex-shrink: 0;
+  transition: transform 0.2s;
+}
+.trigger[data-state="open"] .chevron {
+  transform: rotate(180deg);
+}
+.menu {
+  width: 310px;
+  max-width: calc(100vw - 24px);
+  padding: 6px !important;
+  border: 1px solid #e5e5ef !important;
+  border-radius: 16px !important;
+  background: #fff !important;
+  color: #171936 !important;
+  box-shadow: 0 12px 40px #17193618 !important;
+}
+.identity {
+  padding: 14px 12px !important;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  white-space: normal;
+}
+.avatar {
+  width: 44px !important;
+  height: 44px !important;
+  flex-shrink: 0;
+}
+.identity > div:last-child {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.identity strong {
+  font-size: 15px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+.identity span {
+  font-size: 12px;
+  font-weight: 400;
+  color: #656780;
+  overflow-wrap: anywhere;
+}
+.identity small {
+  font-size: 11px;
+  font-weight: 500;
+  color: #514fe4;
+  margin-top: 3px;
+}
+.separator {
+  height: 1px !important;
+  background: #eeeef5 !important;
+  margin: 4px 6px !important;
+}
+.group {
+  padding: 4px 0;
+}
+.item {
+  display: flex !important;
+  align-items: center;
+  gap: 12px !important;
+  margin: 2px 0;
+  padding: 11px 12px !important;
+  border-radius: 10px !important;
+  cursor: pointer;
+  font-size: 13px !important;
+  color: #343650 !important;
+  outline: none;
+}
+.item > svg {
+  color: #77788f;
+  flex-shrink: 0;
+}
+.item > svg:last-child {
+  margin-left: auto;
+  width: 14px;
+}
+.item span {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.item small {
+  font-size: 11px;
+  color: #77788f;
+}
+.item[data-highlighted] {
+  background: #f2f1ff !important;
+  color: #514fe4 !important;
+}
+.logout {
+  color: #a33347 !important;
+}
+.logout > svg {
+  color: inherit !important;
+  margin-left: 0 !important;
+  width: 18px !important;
+}
+.logout[data-highlighted] {
+  background: #fff0f2 !important;
+  color: #a33347 !important;
+}
+.error {
+  padding: 8px 12px;
+  font-size: 12px;
+  color: #a33347;
+}
+@media (max-width: 600px) {
+  .triggerName {
+    display: none;
+  }
+  .trigger {
+    gap: 5px !important;
+  }
+}

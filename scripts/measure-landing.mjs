@@ -1,0 +1,9 @@
+import {chromium} from '@playwright/test';import fs from 'node:fs/promises';
+const browser=await chromium.launch({channel:'chrome'});const page=await browser.newPage({viewport:{width:1440,height:900}});
+await page.addInitScript(()=>{window.lab={longTasks:[],lcp:0,cls:0};new PerformanceObserver(l=>l.getEntries().forEach(e=>window.lab.longTasks.push(e.duration))).observe({type:'longtask',buffered:true});new PerformanceObserver(l=>l.getEntries().forEach(e=>window.lab.lcp=e.startTime)).observe({type:'largest-contentful-paint',buffered:true});new PerformanceObserver(l=>l.getEntries().forEach(e=>{if(!e.hadRecentInput)window.lab.cls+=e.value;})).observe({type:'layout-shift',buffered:true});});
+await page.goto('http://localhost:3002');await page.waitForTimeout(12500);
+const measurement=await page.evaluate(()=>new Promise(resolve=>{
+ const result={...window.lab};const stamps=[];const top=document.querySelector('#skills').getBoundingClientRect().top+scrollY;document.documentElement.style.scrollBehavior='auto';scrollTo(0,top);const start=performance.now();
+ function step(t){stamps.push(t);scrollTo(0,top+Math.min(1,(t-start)/6000)*3240);if(t-start<6000)requestAnimationFrame(step);else{const deltas=stamps.slice(1).map((v,i)=>v-stamps[i]).sort((a,b)=>a-b);resolve({...result,frameSamples:deltas.length,medianFrameMs:deltas[Math.floor(deltas.length*.5)],p95FrameMs:deltas[Math.floor(deltas.length*.95)],scrollLongTasks:window.lab.longTasks.slice(result.longTasks.length),resources:performance.getEntriesByType('resource').length});}}requestAnimationFrame(step);
+}));
+await fs.writeFile('artifacts/ultimate-landing/performance-lab.json',JSON.stringify({environment:'Local Chrome desktop, 1440x900, no CPU/network throttling; no video recording, other OS work may affect values',...measurement},null,2));console.log(measurement);await browser.close();

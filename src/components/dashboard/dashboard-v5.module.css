@@ -1,0 +1,815 @@
+.dashboard {
+  color: #161a35;
+  display: grid;
+  gap: 16px;
+}
+.greeting {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.greeting h1 {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: -0.025em;
+}
+.greeting h1 span {
+  font-weight: 650;
+}
+.greeting p {
+  color: #656982;
+  font-size: 13px;
+  margin-top: 5px;
+}
+.quietLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #514fe4;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 236px;
+  border-radius: 16px;
+  background: #20174e;
+  color: white;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+}
+.hero:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, #211345 0%, #21194f 40%, #343079 100%);
+  z-index: -2;
+}
+.heroArtwork {
+  position: absolute;
+  inset: 0 0 0 auto;
+  width: 100%;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+}
+.ribbon {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.heroCopy {
+  grid-column: 1;
+  grid-row: 1;
+  padding: 24px 32px;
+  position: relative;
+  min-width: 0;
+}
+.hero h2 {
+  font-size: clamp(23px, 2.3vw, 34px);
+  line-height: 1.18;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+.heroTest {
+  color: #eee9ff;
+  font-size: 15px;
+  margin-top: 10px;
+  font-weight: 500;
+}
+.heroTest span {
+  font-size: 13px;
+  font-weight: 400;
+}
+.heroMeta {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  margin-top: 9px;
+  font-size: 12px;
+  color: #ded8f8;
+}
+.heroMeta span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.heroActions {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  margin-top: 16px;
+}
+.heroActions a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 13px;
+  white-space: nowrap;
+}
+.primaryAction {
+  background: #7250f5;
+  color: white;
+  padding: 10px 19px;
+  border-radius: 24px;
+  font-weight: 600;
+  box-shadow: 0 6px 16px #120b4240;
+  transition: background 0.2s;
+}
+.primaryAction:hover {
+  background: #815eff;
+}
+.dashboard a:focus-visible,
+.dashboard button:focus-visible,
+.chart circle:focus-visible {
+  outline: 2px solid #514fe4;
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+.hero a:focus-visible {
+  outline-color: #fff;
+}
+.overviewGrid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  align-items: start;
+  gap: 16px;
+}
+.coveragePanel {
+  grid-column: span 4;
+}
+.activityPanel {
+  grid-column: span 5;
+}
+.streakPanel {
+  grid-column: span 3;
+}
+.dashboard .panel {
+  background: #fff;
+  border: 1px solid #e6e5f4;
+  border-radius: 16px;
+  box-shadow: none;
+  padding: 20px;
+  gap: 0;
+  min-width: 0;
+}
+.panelHeading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.panelHeading h2 {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+}
+.panelHeading h2 > svg {
+  color: #6950f2;
+  flex-shrink: 0;
+}
+.infoButton {
+  display: grid;
+  place-items: center;
+  color: #7c7b9b;
+  width: 24px;
+  height: 24px;
+}
+.coverageLayout {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.dashboard .coverageRing {
+  width: 120px;
+  height: 120px;
+  flex-shrink: 0;
+  position: relative;
+  display: block;
+  padding: 0;
+  margin: 0;
+  border-radius: 50%;
+  background: transparent;
+}
+.coverageRing svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.ringValue {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: #161a35;
+  font-size: 30px;
+  font-weight: 650;
+  line-height: 1.2;
+}
+.ringValue small {
+  font-size: 12px;
+  color: #656982;
+  font-weight: 400;
+  margin-top: 7px;
+}
+.skillRows {
+  flex: 1;
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+}
+.skillRow {
+  display: grid;
+  grid-template-columns: 17px 62px minmax(24px, 1fr) auto;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+}
+.skillRow > svg {
+  width: 17px;
+  height: 17px;
+  color: #6950f2;
+}
+.skillRow strong {
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.skillRow strong small {
+  font-size: 11px;
+  color: #656982;
+  font-weight: 400;
+}
+.skillBar {
+  height: 5px;
+  border-radius: 8px;
+  background: #eeedfa;
+  overflow: hidden;
+}
+.skillBar i {
+  height: 100%;
+  display: block;
+  background: linear-gradient(90deg, #6850f1, #a799fd);
+  border-radius: inherit;
+}
+.caption {
+  color: #686b80;
+  font-size: 12px;
+  line-height: 1.65;
+  margin-top: 10px;
+}
+.realStats {
+  border-top: 1px solid #eeedf6;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 12px;
+  padding-top: 12px;
+  font-size: 12px;
+  color: #656982;
+}
+.realStats strong {
+  font-size: 13px;
+  color: #161a35;
+  margin-right: 4px;
+}
+.rangeSelect {
+  height: 32px;
+  padding: 4px 9px;
+  width: auto;
+  min-width: 82px;
+  font-size: 12px;
+  background: #fafaff;
+  border-color: #eeedf6;
+  border-radius: 18px;
+  box-shadow: none;
+}
+.chartSummary {
+  color: #656982;
+  font-size: 12px;
+  margin-top: -4px;
+}
+.chartSummary strong {
+  font-size: 22px;
+  font-weight: 600;
+  color: #514fe4;
+}
+.chartSummary span {
+  margin-left: 4px;
+}
+.chart {
+  width: 100%;
+  height: 140px;
+  flex-shrink: 0;
+  display: block;
+  margin: 0 0 9px;
+  overflow: visible;
+}
+.chart text {
+  font-family: inherit;
+  font-size: 11px;
+  fill: #656982;
+}
+.chart text.chartEmpty {
+  font-size: 12px;
+}
+.chart circle {
+  cursor: help;
+}
+.streakSummary {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 12px;
+}
+.flame {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 60px;
+  color: #de7435;
+  background: #fff5e9;
+  border-radius: 24px;
+  flex-shrink: 0;
+}
+.streakSummary strong {
+  font-size: 27px;
+  line-height: 1.2;
+  font-weight: 650;
+}
+.streakSummary strong > span {
+  font-size: 14px;
+  font-weight: 600;
+}
+.streakSummary p {
+  color: #656982;
+  font-size: 12px;
+  margin-top: 7px;
+  line-height: 1.6;
+}
+.week {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  margin-top: 20px;
+}
+.week button {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0;
+  font-size: 12px;
+  color: #514fe4;
+}
+.week i {
+  display: grid;
+  place-items: center;
+  width: 25px;
+  height: 25px;
+  background: #f4f3fc;
+  border: 1px solid #e3e0fa;
+  border-radius: 50%;
+}
+.week i > span {
+  width: 4px;
+  height: 4px;
+  background: #d3ceed;
+  border-radius: 50%;
+}
+.week i.dayDone {
+  background: #7655ef;
+  color: white;
+  border-color: #7655ef;
+}
+.lowerGrid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 16px;
+  align-items: start;
+}
+.mainColumn {
+  grid-column: span 8;
+}
+.sideColumn {
+  grid-column: span 4;
+}
+.mainColumn,
+.sideColumn {
+  display: grid;
+  gap: 16px;
+  min-width: 0;
+}
+.skillPath {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  position: relative;
+  padding: 7px 0 0;
+}
+.skillPath:before {
+  content: "";
+  height: 2px;
+  background: #e5e1f5;
+  position: absolute;
+  top: 24px;
+  left: 12%;
+  right: 12%;
+}
+.skillPath a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  text-align: center;
+  gap: 8px;
+}
+.skillPath a > span {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  background: #efedf8;
+  color: #79719e;
+  border: 4px solid white;
+  border-radius: 50%;
+}
+.skillPath a > span.pathDone {
+  background: #8467ef;
+  color: white;
+}
+.skillPath a > span > svg {
+  width: 17px;
+  height: 17px;
+}
+.skillPath strong {
+  font-size: 12px;
+  font-weight: 550;
+}
+.skillPath small {
+  font-size: 12px;
+  color: #686b80;
+}
+.recommendationGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+.skillCard {
+  border-radius: 14px;
+  padding: 16px;
+  min-width: 0;
+  background: #eeedff;
+  color: #514fe4;
+  transition: transform 0.2s;
+}
+.skillCard:hover {
+  transform: translateY(-3px);
+}
+.skillCard > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+.skillCard > div > svg {
+  width: 24px;
+  height: 24px;
+}
+.skillArrow {
+  display: grid;
+  place-items: center;
+  width: 23px;
+  height: 23px;
+  border-radius: 50%;
+  background: #ffffff80;
+}
+.skillCard h3 {
+  color: #161a35;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -0.015em;
+}
+.skillCard p {
+  font-size: 12px;
+  line-height: 1.65;
+  color: #4e5373;
+  margin-top: 7px;
+}
+.skillFoot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  margin-top: 16px;
+  gap: 4px;
+}
+.reading {
+  background: #edf4ff;
+  color: #356cce;
+}
+.speaking {
+  background: #f9edf8;
+  color: #ac4e9f;
+}
+.writing {
+  background: #edf6ef;
+  color: #477f58;
+}
+.recentList {
+  display: grid;
+  gap: 0;
+}
+.recentList a {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 10px 0;
+  border-bottom: 1px solid #f0eef7;
+}
+.recentList a:last-child {
+  border-bottom: 0;
+}
+.activityIcon {
+  width: 35px;
+  height: 35px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  color: #6950f2;
+  background: #f1eeff;
+  border-radius: 10px;
+}
+.activityIcon svg {
+  width: 19px;
+  height: 19px;
+}
+.recentList a > div {
+  flex: 1;
+  min-width: 0;
+}
+.recentList strong {
+  display: block;
+  font-size: 12px;
+  font-weight: 550;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+.recentList small {
+  color: #656982;
+  font-size: 12px;
+}
+.recentList a > svg {
+  flex-shrink: 0;
+  color: #8881a5;
+}
+.empty {
+  min-height: 96px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-align: center;
+  padding: 10px 8px;
+}
+.empty > svg {
+  color: #aaa0db;
+  stroke-width: 1.5;
+}
+.empty p {
+  color: #656982;
+  font-size: 12px;
+  max-width: 28ch;
+}
+.empty a,
+.empty button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #514fe4;
+  font-size: 12px;
+}
+.addPlan {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  color: #514fe4;
+  font-size: 12px;
+  padding: 4px 0;
+}
+.planList {
+  display: grid;
+  max-height: 245px;
+  overflow-y: auto;
+}
+.planList > div {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 10px 0;
+  border-bottom: 1px solid #eeedf6;
+}
+.planMarker {
+  width: 7px;
+  height: 7px;
+  background: #b7a7f7;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.planList a {
+  flex: 1;
+  min-width: 0;
+}
+.planList strong {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+}
+.planList small {
+  color: #656982;
+  font-size: 12px;
+}
+.planList button {
+  display: grid;
+  place-items: center;
+  color: #8881a5;
+  width: 28px;
+  height: 28px;
+}
+.planList button:hover {
+  color: #aa3554;
+  background: #fff0f3;
+  border-radius: 6px;
+}
+.loadingPanel {
+  height: 265px;
+  border-radius: 16px;
+}
+@container workspace (max-width: 1200px) {
+  .coveragePanel,
+  .activityPanel {
+    grid-column: span 6;
+  }
+  .streakPanel {
+    grid-column: span 12;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    column-gap: 24px;
+  }
+  .streakPanel .panelHeading,
+  .streakPanel .caption {
+    grid-column: span 2;
+  }
+  .streakPanel .streakSummary,
+  .streakPanel .week {
+    margin-top: 0;
+  }
+  .recommendationGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@container workspace (max-width: 900px) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .heroArtwork {
+    position: relative;
+    inset: auto;
+    width: auto;
+    grid-column: 1;
+    grid-row: 2;
+    height: 120px;
+    padding: 0;
+  }
+  .coveragePanel,
+  .activityPanel,
+  .streakPanel,
+  .mainColumn,
+  .sideColumn {
+    grid-column: span 12;
+  }
+
+  .skillRows {
+    max-width: none;
+  }
+  .hero h2 {
+    font-size: 28px;
+  }
+}
+@container workspace (max-width: 560px) {
+  .greeting {
+    align-items: flex-start;
+  }
+  .greeting > a {
+    display: none;
+  }
+  .greeting h1 {
+    font-size: 23px;
+  }
+  .greeting h1 span {
+    display: block;
+  }
+  .hero {
+    min-height: 0;
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .heroArtwork {
+    position: relative;
+    inset: auto;
+    width: auto;
+    grid-column: 1;
+    grid-row: 2;
+    height: 120px;
+    padding: 0;
+    mask-image: none;
+  }
+  .heroCopy {
+    padding: 24px;
+  }
+  .hero h2 {
+    font-size: 25px;
+    max-width: 18ch;
+  }
+
+  .heroMeta {
+    margin-top: 12px;
+  }
+  .heroActions {
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+  .heroActions a {
+    font-size: 12px;
+  }
+  .coverageLayout {
+    gap: 12px;
+  }
+  .dashboard .coverageRing {
+    width: 114px;
+    height: 114px;
+  }
+  .skillRow {
+    grid-template-columns: 16px 60px minmax(12px, 1fr) auto;
+    gap: 5px;
+    min-height: 24px;
+  }
+  .skillRow strong small {
+    display: none;
+  }
+  .skillRows {
+    gap: 6px;
+  }
+  .streakPanel {
+    display: block;
+  }
+  .streakPanel .week {
+    margin-top: 20px;
+  }
+  .streakSummary {
+    margin-top: 8px;
+  }
+  .panelHeading h2 {
+    font-size: 14px;
+  }
+  .panelHeading {
+    gap: 8px;
+  }
+  .skillPath {
+    gap: 4px;
+  }
+  .skillPath small {
+    font-size: 11px;
+  }
+  .recommendationGrid {
+    gap: 10px;
+  }
+  .skillCard {
+    padding: 15px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .skillCard {
+    transition: none;
+  }
+  .skillCard:hover {
+    transform: none;
+  }
+}

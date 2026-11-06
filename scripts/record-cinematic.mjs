@@ -1,0 +1,14 @@
+import {chromium} from '@playwright/test';
+import fs from 'node:fs/promises';
+const out='artifacts/motion-v3';const base='http://localhost:3002';
+const browser=await chromium.launch({channel:'chrome'});
+async function scroll(page,to,duration){await page.evaluate(async({to,duration})=>{document.documentElement.style.scrollBehavior='auto';const from=scrollY,start=performance.now();await new Promise(resolve=>{function frame(now){const t=Math.min(1,(now-start)/duration);const e=t*t*(3-2*t);scrollTo(0,from+(to-from)*e);t<1?requestAnimationFrame(frame):resolve();}requestAnimationFrame(frame);});},{to,duration});}
+async function record(mobile){
+const name=mobile?'mobile-cinematic':'desktop-cinematic';const viewport=mobile?{width:390,height:844}:{width:1440,height:900};
+const c=await browser.newContext({viewport,isMobile:mobile,hasTouch:mobile,recordVideo:{dir:out+'/raw',size:viewport}});const p=await c.newPage();const errors=[];p.on('pageerror',e=>errors.push(e.message));
+await p.addInitScript(()=>{window.__frames=[];window.__longTasks=[];let last=0;function tick(t){if(last)window.__frames.push(t-last);last=t;requestAnimationFrame(tick)}requestAnimationFrame(tick);new PerformanceObserver(l=>window.__longTasks.push(...l.getEntries().map(e=>({start:e.startTime,duration:e.duration})))).observe({type:'longtask',buffered:true});});
+await p.goto(base,{waitUntil:'domcontentloaded'});await p.waitForFunction(()=>document.querySelector('[data-motion-hero]')?.getAttribute('data-motion-state')==='complete',{},{timeout:12000});await p.screenshot({path:out+'/'+name+'-hero.png'});
+if(!mobile){const top=await p.locator('[data-motion-story]').evaluate(e=>e.parentElement.getBoundingClientRect().top+scrollY);await scroll(p,top+324,2200);await p.waitForTimeout(700);for(const f of [.35,.6,.9]){await scroll(p,top+3240*f,2200);await p.waitForTimeout(900);await p.screenshot({path:out+'/production-scroll-'+f+'.png'});}await scroll(p,top+3240*.56,2100);await p.waitForTimeout(600);await scroll(p,top+3240+850,3300);await p.waitForTimeout(1700);}else{
+for(const id of ['skill-scene-0','skill-scene-1','skill-scene-2','skill-scene-3']){const y=await p.locator('#'+id).evaluate(e=>e.getBoundingClientRect().top+scrollY-90);await scroll(p,y,2400);await p.waitForTimeout(1200);}const y=await p.locator('#how').evaluate(e=>e.getBoundingClientRect().top+scrollY);await scroll(p,y,2500);await p.waitForTimeout(1700);}
+await p.screenshot({path:out+'/'+name+'-final.png'});const metrics=await p.evaluate(()=>({frames:window.__frames,longTasks:window.__longTasks,overflow:document.documentElement.scrollWidth>innerWidth,pins:document.querySelectorAll('.pin-spacer').length}));const video=p.video();await c.close();await video.saveAs(out+'/'+name+'.webm');await fs.writeFile(out+'/'+name+'-metrics.json',JSON.stringify({errors,...metrics},null,2));console.log(name,errors,metrics.overflow);}
+await record(false);await record(true);await browser.close();

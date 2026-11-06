@@ -1,0 +1,14 @@
+node_modules/
+.next/
+out/
+*.tsbuildinfo
+.env*
+test-results/
+playwright-report/
+!.env.example
+.agents/
+.codex/
+.impeccable/
+artifacts/
+*.log
+1.txt

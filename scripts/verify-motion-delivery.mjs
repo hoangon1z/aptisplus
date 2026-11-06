@@ -1,0 +1,5 @@
+import {chromium} from '@playwright/test';import fs from 'node:fs/promises';
+const b=await chromium.launch({channel:'chrome'});const results=[];
+for(const width of [390,768,1440]){const c=await b.newContext({viewport:{width,height:900},reducedMotion:'reduce'});const p=await c.newPage();await p.goto('http://localhost:3002');await p.evaluate(()=>document.fonts.ready);await p.screenshot({path:`artifacts/motion-v3/viewport-${width}.png`});results.push({width,pins:await p.locator('.pin-spacer').count(),lines:await p.locator('.hero-line').count(),overflow:await p.evaluate(()=>document.documentElement.scrollWidth>innerWidth)});await c.close();}
+const c=await b.newContext();const p=await c.newPage();for(const route of ['/login','/register','/dashboard','/practice','/exam/listening','/exam/reading','/exam/speaking','/exam/writing']){const response=await p.goto('http://localhost:3002'+route);results.push({route,status:response.status(),h1:await p.locator('h1').first().textContent()});}
+await fs.writeFile('artifacts/motion-v3/route-and-responsive-check.json',JSON.stringify(results,null,2));await b.close();console.log(results);
